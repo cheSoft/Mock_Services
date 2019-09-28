@@ -10,9 +10,20 @@ import javax.ws.rs.core.MediaType;
 public class PersonResources {
 
 	@GET
-	// @Produces(MediaType.APPLICATION_XML)
+	@Path("/json")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PersonDetail getPersonDetail(@QueryParam("name") String name) {
+	public PersonDetail getPersonDetailJSON(@QueryParam("name") String name) {
+		PersonDetail person = new PersonDetail();
+		person.setName(name);
+		person.setEmpId(101);
+		person.setAddress("Hyd");
+		return person;
+	}
+	
+	@GET
+	@Path("/xml")
+	@Produces(MediaType.APPLICATION_XML)
+	public PersonDetail getPersonDetailXML(@QueryParam("name") String name) {
 		PersonDetail person = new PersonDetail();
 		person.setName(name);
 		person.setEmpId(101);
